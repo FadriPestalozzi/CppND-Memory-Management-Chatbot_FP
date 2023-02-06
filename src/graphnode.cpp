@@ -11,7 +11,10 @@ GraphNode::~GraphNode()
     //// STUDENT CODE
     ////
 
-    delete _chatBot; 
+    // gdb ./membot throws error upon closing gui
+    // Thread 1 "membot" received signal SIGSEGV, Segmentation fault
+    // prevent error by commenting out next line
+    // delete _chatBot;  // destructor already called in chatlogic.cpp
 
     ////
     //// EOF STUDENT CODE

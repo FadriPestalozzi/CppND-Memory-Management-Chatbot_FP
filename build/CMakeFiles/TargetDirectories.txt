@@ -1,0 +1,3 @@
+/home/fadri/cpp/memoryMgmtChatbot/build/CMakeFiles/rebuild_cache.dir
+/home/fadri/cpp/memoryMgmtChatbot/build/CMakeFiles/edit_cache.dir
+/home/fadri/cpp/memoryMgmtChatbot/build/CMakeFiles/membot.dir
