@@ -14,41 +14,13 @@
 
 ChatLogic::ChatLogic()
 {
-    //// STUDENT CODE
-    ////
+    //// STUDENT CODE   
 
-    // create instance of chatbot
-    _chatBot = new ChatBot("../images/chatbot.png");
-
-    // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
-    _chatBot->SetChatLogicHandle(this);
-
-    ////
     //// EOF STUDENT CODE
 }
 
 ChatLogic::~ChatLogic()
 {
-    //// STUDENT CODE
-    ////
-
-    // delete chatbot instance
-    delete _chatBot;
-
-    // delete all nodes
-    for (auto it = std::begin(_nodes); it != std::end(_nodes); ++it)
-    {
-        delete *it;
-    }
-
-    // delete all edges
-    for (auto it = std::begin(_edges); it != std::end(_edges); ++it)
-    {
-        delete *it;
-    }
-
-    ////
-    //// EOF STUDENT CODE
 }
 
 template <typename T>
@@ -124,22 +96,20 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
                     if (type->second == "NODE")
                     {
                         //// STUDENT CODE
-                        ////
 
-                        // check if node with this ID exists already
-                        auto newNode = std::find_if(_nodes.begin(), _nodes.end(), [&id](GraphNode *node) { return node->GetID() == id; });
-
-                        // create new element if ID does not yet exist
+                        // if node with ID already exists
+                        auto newNode = std::find_if(_nodes.begin(), _nodes.end(), [&id](std::unique_ptr<GraphNode> const &node) { return node->GetID() == id; });
+                        // new element if ID not yet existing
                         if (newNode == _nodes.end())
-                        {
-                            _nodes.emplace_back(new GraphNode(id));
-                            newNode = _nodes.end() - 1; // get iterator to last element
+                        {   _nodes.emplace_back(std::make_unique<GraphNode>(id));
+                            
+                            // last element
+                            newNode = _nodes.end() - 1; 
 
                             // add all answers to current node
                             AddAllTokensToElement("ANSWER", tokens, **newNode);
                         }
 
-                        ////
                         //// EOF STUDENT CODE
                     }
 
@@ -155,25 +125,26 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
 
                         if (parentToken != tokens.end() && childToken != tokens.end())
                         {
-                            // get iterator on incoming and outgoing node via ID search
-                            auto parentNode = std::find_if(_nodes.begin(), _nodes.end(), [&parentToken](GraphNode *node) { return node->GetID() == std::stoi(parentToken->second); });
-                            auto childNode = std::find_if(_nodes.begin(), _nodes.end(), [&childToken](GraphNode *node) { return node->GetID() == std::stoi(childToken->second); });
-
-                            // create new edge
-                            GraphEdge *edge = new GraphEdge(id);
-                            edge->SetChildNode(*childNode);
-                            edge->SetParentNode(*parentNode);
-                            _edges.push_back(edge);
-
+                            // iterator on parent and child node via ID
+                            auto parentNode = std::find_if(_nodes.begin(), _nodes.end(), [&parentToken](std::unique_ptr<GraphNode> const &node) 
+                                { return node->GetID() == std::stoi(parentToken->second); });
+                            
+                            auto childNode = std::find_if(_nodes.begin(), _nodes.end(), [&childToken](std::unique_ptr<GraphNode> const &node) 
+                                { return node->GetID() == std::stoi(childToken->second); });
+           
+                            // create new edgewith parent and child
+                            std::unique_ptr<GraphEdge> edge = std::make_unique<GraphEdge>(id);
+                            edge->SetParentNode((*parentNode).get());
+                            edge->SetChildNode((*childNode).get());
+                            
                             // find all keywords for current node
                             AddAllTokensToElement("KEYWORD", tokens, *edge);
 
                             // store reference in child node and parent node
-                            (*childNode)->AddEdgeToParentNode(edge);
-                            (*parentNode)->AddEdgeToChildNode(edge);
+                            (*parentNode)->AddEdgeToChildNode(std::move(edge));
+                            (*childNode)->AddEdgeToParentNode(edge.get());
                         }
 
-                        ////
                         //// EOF STUDENT CODE
                     }
                 }
@@ -194,7 +165,6 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
     }
 
     //// STUDENT CODE
-    ////
 
     // identify root node
     GraphNode *rootNode = nullptr;
@@ -203,11 +173,9 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
         // search for nodes which have no incoming edges
         if ((*it)->GetNumberOfParents() == 0)
         {
-
             if (rootNode == nullptr)
-            {
-                rootNode = *it; // assign current node to root
-            }
+            // assign current node to root
+            {rootNode = (*it).get(); } 
             else
             {
                 std::cout << "ERROR : Multiple root nodes detected" << std::endl;
@@ -216,15 +184,17 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
     }
 
     // add chatbot to graph root node
-    _chatBot->SetRootNode(rootNode);
-    rootNode->MoveChatbotHere(_chatBot);
+    ChatBot _chat = ChatBot("../images/chatbot.png");
+    _chatBot = &_chat;
+    _chatBot->SetChatLogicHandle(this);
+    _chat.SetRootNode(rootNode);
+    rootNode->MoveChatbotHere(std::move(_chat));
     
-    ////
     //// EOF STUDENT CODE
 }
 
 void ChatLogic::SetPanelDialogHandle(ChatBotPanelDialog *panelDialog)
-{
+{ 
     _panelDialog = panelDialog;
 }
 
