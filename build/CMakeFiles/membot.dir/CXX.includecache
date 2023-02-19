@@ -30,22 +30,6 @@ wx/bitmap.h
 string
 -
 
-/home/fadri/cpp/memoryMgmtChatbot/src/chatgui.cpp
-wx/filename.h
--
-wx/colour.h
--
-wx/image.h
--
-string
--
-chatbot.h
-/home/fadri/cpp/memoryMgmtChatbot/src/chatbot.h
-chatlogic.h
-/home/fadri/cpp/memoryMgmtChatbot/src/chatlogic.h
-chatgui.h
-/home/fadri/cpp/memoryMgmtChatbot/src/chatgui.h
-
 /home/fadri/cpp/memoryMgmtChatbot/src/chatgui.h
 wx/wx.h
 -
@@ -86,11 +70,25 @@ string
 chatgui.h
 /home/fadri/cpp/memoryMgmtChatbot/src/chatgui.h
 
+/home/fadri/cpp/memoryMgmtChatbot/src/graphedge.cpp
+graphnode.h
+/home/fadri/cpp/memoryMgmtChatbot/src/graphnode.h
+graphedge.h
+/home/fadri/cpp/memoryMgmtChatbot/src/graphedge.h
+
 /home/fadri/cpp/memoryMgmtChatbot/src/graphedge.h
 vector
 -
 string
 -
+
+/home/fadri/cpp/memoryMgmtChatbot/src/graphnode.cpp
+iostream
+-
+graphedge.h
+/home/fadri/cpp/memoryMgmtChatbot/src/graphedge.h
+graphnode.h
+/home/fadri/cpp/memoryMgmtChatbot/src/graphnode.h
 
 /home/fadri/cpp/memoryMgmtChatbot/src/graphnode.h
 vector
