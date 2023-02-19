@@ -1,0 +1,27 @@
+[
+{
+  "directory": "/home/fadri/cpp/memoryMgmtChatbot/build",
+  "command": "/usr/bin/g++  -DWXUSINGDLL -D_FILE_OFFSET_BITS=64 -D__WXGTK__ -isystem /usr/lib/x86_64-linux-gnu/wx/include/gtk3-unicode-3.0 -isystem /usr/include/wx-3.0   -pthread -g   -Wall -Wextra -O0 -ggdb -std=gnu++17 -o CMakeFiles/membot.dir/src/chatbot.cpp.o -c /home/fadri/cpp/memoryMgmtChatbot/src/chatbot.cpp",
+  "file": "/home/fadri/cpp/memoryMgmtChatbot/src/chatbot.cpp"
+},
+{
+  "directory": "/home/fadri/cpp/memoryMgmtChatbot/build",
+  "command": "/usr/bin/g++  -DWXUSINGDLL -D_FILE_OFFSET_BITS=64 -D__WXGTK__ -isystem /usr/lib/x86_64-linux-gnu/wx/include/gtk3-unicode-3.0 -isystem /usr/include/wx-3.0   -pthread -g   -Wall -Wextra -O0 -ggdb -std=gnu++17 -o CMakeFiles/membot.dir/src/chatgui.cpp.o -c /home/fadri/cpp/memoryMgmtChatbot/src/chatgui.cpp",
+  "file": "/home/fadri/cpp/memoryMgmtChatbot/src/chatgui.cpp"
+},
+{
+  "directory": "/home/fadri/cpp/memoryMgmtChatbot/build",
+  "command": "/usr/bin/g++  -DWXUSINGDLL -D_FILE_OFFSET_BITS=64 -D__WXGTK__ -isystem /usr/lib/x86_64-linux-gnu/wx/include/gtk3-unicode-3.0 -isystem /usr/include/wx-3.0   -pthread -g   -Wall -Wextra -O0 -ggdb -std=gnu++17 -o CMakeFiles/membot.dir/src/chatlogic.cpp.o -c /home/fadri/cpp/memoryMgmtChatbot/src/chatlogic.cpp",
+  "file": "/home/fadri/cpp/memoryMgmtChatbot/src/chatlogic.cpp"
+},
+{
+  "directory": "/home/fadri/cpp/memoryMgmtChatbot/build",
+  "command": "/usr/bin/g++  -DWXUSINGDLL -D_FILE_OFFSET_BITS=64 -D__WXGTK__ -isystem /usr/lib/x86_64-linux-gnu/wx/include/gtk3-unicode-3.0 -isystem /usr/include/wx-3.0   -pthread -g   -Wall -Wextra -O0 -ggdb -std=gnu++17 -o CMakeFiles/membot.dir/src/graphedge.cpp.o -c /home/fadri/cpp/memoryMgmtChatbot/src/graphedge.cpp",
+  "file": "/home/fadri/cpp/memoryMgmtChatbot/src/graphedge.cpp"
+},
+{
+  "directory": "/home/fadri/cpp/memoryMgmtChatbot/build",
+  "command": "/usr/bin/g++  -DWXUSINGDLL -D_FILE_OFFSET_BITS=64 -D__WXGTK__ -isystem /usr/lib/x86_64-linux-gnu/wx/include/gtk3-unicode-3.0 -isystem /usr/include/wx-3.0   -pthread -g   -Wall -Wextra -O0 -ggdb -std=gnu++17 -o CMakeFiles/membot.dir/src/graphnode.cpp.o -c /home/fadri/cpp/memoryMgmtChatbot/src/graphnode.cpp",
+  "file": "/home/fadri/cpp/memoryMgmtChatbot/src/graphnode.cpp"
+}
+]
