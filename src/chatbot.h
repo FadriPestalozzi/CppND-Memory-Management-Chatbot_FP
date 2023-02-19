@@ -28,16 +28,25 @@ public:
     ~ChatBot();
 
     //// STUDENT CODE
-    ////
 
-    ////
+    // Rule of Five, Copy Constructor for ChatBot
+    ChatBot(const ChatBot &source);             
+
+    // Rule of Five, Copy Assignment Operator for ChatBot 
+    ChatBot &operator=(const ChatBot &source);  
+    
+    // Rule of Five, Move Constructor for ChatBot
+    ChatBot(ChatBot &&source);                  
+
+    // Rule of Five, Move Assignment Operator for ChatBot
+    ChatBot &operator=(ChatBot &&source);       
+
     //// EOF STUDENT CODE
 
     // getters / setters
     void SetCurrentNode(GraphNode *node);
     void SetRootNode(GraphNode *rootNode) { _rootNode = rootNode; }
     void SetChatLogicHandle(ChatLogic *chatLogic) { _chatLogic = chatLogic; }
-    ChatLogic* GetChatLogicHandle() { return _chatLogic; }
     wxBitmap *GetImageHandle() { return _image; }
 
     // communication

@@ -3,10 +3,10 @@
 #include <algorithm>
 #include <ctime>
 
+#include "chatbot.h"
 #include "chatlogic.h"
 #include "graphnode.h"
 #include "graphedge.h"
-#include "chatbot.h"
 
 // constructor WITHOUT memory allocation
 ChatBot::ChatBot()
@@ -43,9 +43,69 @@ ChatBot::~ChatBot()
 }
 
 //// STUDENT CODE
-////
 
-////
+// Rule of Five, Copy Constructor for ChatBot
+ChatBot::ChatBot(const ChatBot &source)
+{
+    _image = new wxBitmap(*source._image);
+    _currentNode = source._currentNode;
+    _rootNode = source._rootNode;
+    _chatLogic = source._chatLogic;
+}
+
+// Rule of Five, Copy Assignment Operator for ChatBot
+ChatBot &ChatBot::operator=(const ChatBot &source)
+{
+    if(this == &source)
+        return *this;
+    
+    delete _image;
+    _image = new wxBitmap(*source._image);
+    _currentNode = source._currentNode;
+    _rootNode = source._rootNode;
+    _chatLogic = source._chatLogic;
+
+    return *this;
+}
+
+// Rule of Five, Move Constructor for ChatBot
+ChatBot::ChatBot(ChatBot &&source)
+{
+    _image = source._image;
+    _currentNode = source._currentNode;
+    _rootNode = source._rootNode;
+    _chatLogic = source._chatLogic;
+
+    _chatLogic->SetChatbotHandle(this);
+
+    source._image = NULL;
+    source._currentNode = nullptr;
+    source._rootNode = nullptr;
+    source._chatLogic = nullptr;
+}
+
+// Rule of Five, Move Assignment Operator for ChatBot
+ChatBot &ChatBot::operator=(ChatBot &&source)
+{
+    if(this == &source)
+        return *this;
+    
+    delete _image;
+    _image = source._image;
+    _currentNode = source._currentNode;
+    _rootNode = source._rootNode;
+    _chatLogic = source._chatLogic;
+
+    _chatLogic->SetChatbotHandle(this);
+
+    source._image = NULL;
+    source._currentNode = nullptr;
+    source._rootNode = nullptr;
+    source._chatLogic = nullptr;
+
+    return *this;
+}
+
 //// EOF STUDENT CODE
 
 void ChatBot::ReceiveMessageFromUser(std::string message)

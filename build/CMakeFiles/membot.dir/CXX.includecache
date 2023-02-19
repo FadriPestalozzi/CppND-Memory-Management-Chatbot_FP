@@ -15,14 +15,14 @@ algorithm
 -
 ctime
 -
+chatbot.h
+/home/fadri/cpp/memoryMgmtChatbot/src/chatbot.h
 chatlogic.h
 /home/fadri/cpp/memoryMgmtChatbot/src/chatlogic.h
 graphnode.h
 /home/fadri/cpp/memoryMgmtChatbot/src/graphnode.h
 graphedge.h
 /home/fadri/cpp/memoryMgmtChatbot/src/graphedge.h
-chatbot.h
-/home/fadri/cpp/memoryMgmtChatbot/src/chatbot.h
 
 /home/fadri/cpp/memoryMgmtChatbot/src/chatbot.h
 wx/bitmap.h
@@ -83,6 +83,12 @@ string
 -
 chatgui.h
 /home/fadri/cpp/memoryMgmtChatbot/src/chatgui.h
+
+/home/fadri/cpp/memoryMgmtChatbot/src/graphedge.cpp
+graphnode.h
+/home/fadri/cpp/memoryMgmtChatbot/src/graphnode.h
+graphedge.h
+/home/fadri/cpp/memoryMgmtChatbot/src/graphedge.h
 
 /home/fadri/cpp/memoryMgmtChatbot/src/graphedge.h
 vector
