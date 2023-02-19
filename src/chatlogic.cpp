@@ -15,7 +15,10 @@
 ChatLogic::ChatLogic()
 {
     //// STUDENT CODE   
+    _chatBot = new ChatBot("../images/chatbot.png");
 
+    // pointer to chatlogic to pass ChatBot answers to GUI
+    _chatBot->SetChatLogicHandle(this);
     //// EOF STUDENT CODE
 }
 
@@ -117,7 +120,6 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
                     if (type->second == "EDGE")
                     {
                         //// STUDENT CODE
-                        ////
 
                         // find tokens for incoming (parent) and outgoing (child) node
                         auto parentToken = std::find_if(tokens.begin(), tokens.end(), [](const std::pair<std::string, std::string> &pair) { return pair.first == "PARENT"; });
@@ -128,7 +130,7 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
                             // iterator on parent and child node via ID
                             auto parentNode = std::find_if(_nodes.begin(), _nodes.end(), [&parentToken](std::unique_ptr<GraphNode> const &node) 
                                 { return node->GetID() == std::stoi(parentToken->second); });
-                            
+           
                             auto childNode = std::find_if(_nodes.begin(), _nodes.end(), [&childToken](std::unique_ptr<GraphNode> const &node) 
                                 { return node->GetID() == std::stoi(childToken->second); });
            
@@ -136,7 +138,7 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
                             std::unique_ptr<GraphEdge> edge = std::make_unique<GraphEdge>(id);
                             edge->SetParentNode((*parentNode).get());
                             edge->SetChildNode((*childNode).get());
-                            
+
                             // find all keywords for current node
                             AddAllTokensToElement("KEYWORD", tokens, *edge);
 
@@ -174,8 +176,8 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
         if ((*it)->GetNumberOfParents() == 0)
         {
             if (rootNode == nullptr)
-            // assign current node to root
-            {rootNode = (*it).get(); } 
+            // assign current node to root 
+            { rootNode = (*it).get();} 
             else
             {
                 std::cout << "ERROR : Multiple root nodes detected" << std::endl;
